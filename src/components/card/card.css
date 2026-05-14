@@ -1,3 +1,4 @@
-.card {
-    display: block;
+.card-image {
+    width: 300px;
+    height: 300px;
 }
