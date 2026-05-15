@@ -1,18 +1,103 @@
-# React + Vite
+# Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun and interactive memory card game built with React and Vite. Test your memory skills by matching pairs of cards!
 
-Currently, two official plugins are available:
+## 🎮 Live Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Play the game here: **[https://memory-game-at.netlify.app/](https://memory-game-at.netlify.app/)**
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Interactive memory card matching gameplay
+- Smooth animations and transitions
+- Responsive design for mobile and desktop
+- Score tracking
+- Difficulty levels (Easy, Medium, Hard)
+- Reset and replay functionality
+- Clean and intuitive user interface
 
-Note: This will impact Vite dev & build performances.
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **React** - UI library
+- **Vite** - Fast build tool and dev server
+- **React Compiler** - Enabled for optimized performance
+- **Oxc/SWC** - Fast JavaScript compiler
+- **ESLint** - Code quality and consistency
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/aayusht200/memory-game.git
+cd memory-game
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`
+
+## 🏗️ Project Structure
+
+```
+memory-game/
+├── src/
+│   ├── components/        # Reusable React components
+│   ├── App.jsx           # Main application component
+│   ├── App.css           # Application styles
+│   └── main.jsx          # Application entry point
+├── public/               # Static assets
+├── index.html            # HTML template
+├── vite.config.js        # Vite configuration
+├── eslint.config.js      # ESLint configuration
+└── package.json          # Project dependencies
+```
+
+## 🎯 How to Play
+
+1. Click on cards to flip them and reveal the symbols
+2. Try to find matching pairs of cards
+3. Match all pairs to complete the level
+4. Track your score and improve your memory!
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start the development server with HMR
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint to check code quality
+
+## 🚀 Build & Deploy
+
+To build the project for production:
+```bash
+npm run build
+```
+
+The build output will be in the `dist/` directory, ready to deploy to services like Netlify, Vercel, or GitHub Pages.
+
+## 📚 Additional Resources
+
+- [React Compiler Documentation](https://react.dev/learn/react-compiler)
+- [Vite Documentation](https://vitejs.dev/)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+
+## 📄 License
+
+This project is open source and available for personal use.
+
+## 👨‍💻 Author
+
+Created by [aayusht200](https://github.com/aayusht200)
+
+---
+
+**Enjoy playing and improving your memory skills!** 🧠✨
