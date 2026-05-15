@@ -1,10 +1,9 @@
-import './card.css';
-
-export default function Card({ data }) {
+export default function Card({ data, onClick }) {
     return (
-        <div className="card">
-            <div className="card-image" style={{ backgroundImage: `url(${data.image})` }}></div>
-            <h2 className="card-title">{data.name}</h2>
+        <div className="card" onClick={onClick}>
+            <img src={data.image} alt={data.name} className="card-image" />
+
+            <p className="card-title">{data.name}</p>
         </div>
     );
 }

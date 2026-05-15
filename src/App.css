@@ -1,15 +1,208 @@
+:root {
+    --clr-bg-primary: #FFF9D2;
+    --clr-bg-secondary: #FFEBCC;
+    --clr-card-bg: #BFDDF0;
+    --clr-text-primary: #111111;
+    --clr-text-muted: #8CC0EB;
+
+    --font-primary: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    --spacing-xs: clamp(0.2rem, 0.5vw, 0.35rem);
+    --spacing-sm: clamp(0.35rem, 0.85vw, 0.65rem);
+    --spacing-md: clamp(0.55rem, 1.1vw, 0.9rem);
+
+    --radius-md: 0.65rem;
+
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    --transition-fast: 0.2s ease;
+}
+
 *,
 *::before,
 *::after {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: system-ui;
+}
+html,
+body,
+#root {
+    height: 100%;
+    /* Keeps the app from creating a page scrollbar. */
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--clr-text-primary);
 }
 
 .app {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+    /* 100dvh keeps the full app inside the visible browser height. */
+    height: 100dvh;
+    width: 100%;
+    display: grid;
+    /* Header gets only the space it needs; cards take the rest. */
+    grid-template-rows: max-content minmax(0, 1fr);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    overflow: hidden;
+    background-color: var(--clr-bg-primary);
+}
+
+.header {
+    display: grid;
+    /* Balanced columns keep the instructions from pushing the layout wider. */
+    grid-template-columns: minmax(8rem, 0.9fr) minmax(0, 1.6fr) minmax(8rem, 0.9fr);
     align-items: center;
+    gap: var(--spacing-md);
+    min-height: 0;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    background-color: var(--clr-bg-secondary);
+}
+
+.game-name {
+    min-width: 0;
+}
+
+.game-name h1 {
+    font-size: clamp(1.35rem, 3vw, 2.25rem);
+    line-height: 1;
+}
+
+.instructions,
+.score-board {
+    display: grid;
+    gap: var(--spacing-xs);
+    min-width: 0;
+}
+
+.instructions h2 {
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    line-height: 1.1;
+}
+
+.instructions p {
+    color: var(--clr-text-muted);
+    font-size: clamp(0.78rem, 1.15vw, 0.95rem);
+    line-height: 1.15;
+}
+
+.score-board {
+    justify-self: end;
+    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* minmax(0, 1fr) lets rows shrink instead of overflowing vertically. */
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-sm);
+    min-height: 0;
+    height: 100%;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--clr-bg-secondary);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    background-color: var(--clr-card-bg);
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-fast);
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-image {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-title {
+    flex: 0 0 auto;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    /* Long card names stay on one line instead of making cards taller. */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--clr-text-primary);
+    background-color: var(--clr-card-bg);
+}
+
+.loading {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    background-color: var(--clr-bg-primary);
+    font-family: var(--font-primary);
+}
+
+@media (max-width: 760px) {
+    .app {
+        padding: var(--spacing-sm);
+    }
+
+    .header {
+        /* Reflows the header so it still fits on narrower screens. */
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            'title score'
+            'instructions instructions';
+    }
+
+    .game-name {
+        grid-area: title;
+    }
+
+    .instructions {
+        grid-area: instructions;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .instructions h2 {
+        grid-column: 1 / -1;
+    }
+
+    .score-board {
+        grid-area: score;
+    }
+}
+
+@media (max-width: 520px) {
+    .instructions {
+        /* Hides instructions on small screens so the 3x3 grid stays visible. */
+        display: none;
+    }
+
+    .header {
+        grid-template-columns: 1fr auto;
+        grid-template-areas: 'title score';
+    }
+
+    .card-grid {
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+    }
 }
